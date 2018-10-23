@@ -1,20 +1,13 @@
 
-const linkCriarConta = React.createElement("a", {
-    className: "link",
-    href: "/conta",
-    children: "Criar uma conta"
-});
+const linkCriarConta = <a class= "link" href= "/conta">Criar uma conta</a>
+const linkFazerLogin = <a class= "link" href= "/login">Fazer o Login</a>
 
 
-const linkFazerLogin = React.createElement("a", {
-    className:"link",
-    href:"/login",
-    children: "Fazer o Login"
-});
-
-const formularioLogin = React.createElement("form", {
-    children: [linkCriarConta, linkFazerLogin]
-});
+const formularioLogin = (
+    <form>
+        {[linkCriarConta, linkFazerLogin]}
+    </form>
+);
 
 
 const divisaoProjeto = document.getElementById("projeto");
