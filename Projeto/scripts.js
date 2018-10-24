@@ -1,16 +1,33 @@
+function Link(props){
+    return (
+        <a className= 'link' href={props.url}>{props.children}
+        </a>
+    )
+}
 
-const linkCriarConta = <a class= "link" href= "/conta">Criar uma conta</a>
-const linkFazerLogin = <a class= "link" href= "/login">Fazer o Login</a>
+function Botao(props){
 
+    let classes = "botao"
 
-const formularioLogin = (
-    <form>
-        {[linkCriarConta, linkFazerLogin]}
-    </form>
-);
+    if (props.desabilitado){
+        classes += " botao--desabilitado"
+    } 
+    return (
+        <button className={classes}>{props.children}</button>
+    )
+}
 
+const paginaLogin =(
+    <main className="página-login">
+    <h1>Login</h1>
+    <p>Entre com seu email e senha.</p>
+    <Link url="/conta"> Criar uma conta</Link>
+    <Botao>Enviar</Botao>
+    <Botao desabilitado>Enviar</Botao>
+    </main>
+)
 
 const divisaoProjeto = document.getElementById("projeto");
 
 //ReactDOM.render(elemento React, tag html)
-ReactDOM.render(formularioLogin, divisaoProjeto);
+ReactDOM.render(paginaLogin, divisaoProjeto)
