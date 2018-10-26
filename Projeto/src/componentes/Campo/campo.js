@@ -3,7 +3,7 @@ import "./campo.css"
 
 
 function Campo(props){
-    return (<input className="caixa-texto" type={props.type} id={props.id} name={props.name} placeholder={props.placeholder}/>)
+    return (<input className="caixa-texto" autoComplete="off" type={props.type} id={props.id} name={props.name} placeholder={props.placeholder}/>)
 
 }
 
