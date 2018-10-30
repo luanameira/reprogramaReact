@@ -16,10 +16,10 @@ function Conta() {
             <Legenda htmlFor="telefone">Telefone:</Legenda>
             <Campo type="text" id="tel" name='Telefone' placeholder="Telefone" required />
             <Legenda htmlFor="email">Email:</Legenda>
-            <Campo type="email" id="email" name='email' placeholder="Email" required minLength={10} />
+            <Campo type="email" id="email" name='email' placeholder="Email" required/>
             <Legenda htmlFor="senha">Senha:</Legenda>
             <Campo type="password" id="senha" name='senha' placeholder="Senha" required minLength={6} />
-            <Botao desabilitado>Enviar</Botao>
+            <Botao desabilitado={this.state.desabilitado}>Enviar</Botao>
             <Link url="/login">Fazer Login</Link>
         </main>
     )

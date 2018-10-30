@@ -6,8 +6,16 @@ import "./campo.css"
 class Campo extends Component {
     constructor(props) {
         super(props)
-        this.state = { erro: "" }
+        this.state = { mofificado: false, erro: "" }
     }
+
+     temErro(){
+         if (!this.state.modificado || this.state.erro) {
+             return true
+         }else{
+             return false
+         }
+     }
 
     validar = (evento) => {
 
@@ -25,7 +33,7 @@ class Campo extends Component {
         } else if (type === "email" && !regex.test(value)) {
             mensagem = "Valor Inválido"
         }
-        this.setState({ erro: mensagem })
+        this.setState({ modificado: true, erro: mensagem }, this.props.onChange)
     }
 
     render() {

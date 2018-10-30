@@ -8,4 +8,4 @@ import Conta from "./pages/Conta/conta";
 const divisaoProjeto = document.getElementById("projeto");
 
 //ReactDOM.render(elemento React, tag html)
-ReactDOM.render(<Conta />, divisaoProjeto)
+ReactDOM.render(<Login />, divisaoProjeto)

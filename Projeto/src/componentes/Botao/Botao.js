@@ -6,7 +6,7 @@ function Botao(props) {
     if (props.desabilitado) {
         classes += " botao--desabilitado";
     }
-    return (<button className={classes}>{props.children}</button>);
+    return (<button className={classes} disabled={props.desabilitado}>{props.children}</button>);
 }
 
 export default Botao
