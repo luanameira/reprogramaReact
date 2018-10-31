@@ -22,7 +22,8 @@ class Campo extends Component {
         const input = evento.target
         const { value, type } = input
         const { required, minLength } = this.props
-        const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        const regexTel = /^\(11\) 9\d{4}-\d{4}|\((?:1[2-9]|[2-9]\d)\) [5-9]\d{3}-\d{4}$/
         let mensagem = ""
 
 
@@ -30,7 +31,9 @@ class Campo extends Component {
             mensagem = "Campo obrigatório"
         } else if (minLength && value.length < minLength) {
             mensagem = `Digite pelo menos ${minLength} caracteres`
-        } else if (type === "email" && !regex.test(value)) {
+        } else if (type === "email" && !regexEmail.test(value)) {
+            mensagem = "Valor Inválido"
+        } else if (type === "tel" && !regexTel.test(value)) {
             mensagem = "Valor Inválido"
         }
         this.setState({ modificado: true, erro: mensagem }, this.props.onChange)

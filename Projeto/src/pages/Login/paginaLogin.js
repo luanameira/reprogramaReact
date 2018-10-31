@@ -20,7 +20,7 @@ class Login extends Component {
         const campoEmail = this.emailRef.current
         const campoSenha = this.senhaRef.current
 
-        if(campoEmail.temErro() || campoSenha.temErro()){
+        if(campoEmail.temErro() || campoSenha.temErro() ){
             this.setState ({desabilitado : true})
             }else{
                 this.setState ({desabilitado : false})
