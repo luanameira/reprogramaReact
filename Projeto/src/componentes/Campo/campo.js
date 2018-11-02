@@ -6,10 +6,16 @@ import "./campo.css"
 class Campo extends Component {
     constructor(props) {
         super(props)
+        this.valor = ""
         this.state = { mofificado: false, erro: "" }
     }
 
-     temErro(){
+
+getValor =() => {
+    return this.getValor;
+}
+
+     temErro = () =>{
          if (!this.state.modificado || this.state.erro) {
              return true
          }else{
