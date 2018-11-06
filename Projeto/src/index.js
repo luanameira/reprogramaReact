@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { withRouter, BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { Provider, connect } from 'react-redux'
+import store from './redux/store'
 import Home from './pages/Home/home'
 import QuemSomos from './pages/QuemSomos/quemsomos'
 import Contato from './pages/Contato/contato'
@@ -10,24 +12,16 @@ import NavBar from './componentes/NavBar/navbar'
 import NaoEncontrada from './pages/NaoEncontrada/naoEncontrada'
 import './index.css'
 
-let usuario = JSON.parse(localStorage.getItem('usuario'))
 
-function logaUsuario(dados) {
-  const json = JSON.stringify(dados)
-  localStorage.setItem('usuario', json)
-  usuario = dados
-}
+function App(props) {
 
+  const usuario = props.usuario
+  const logaUsuario = props.logaUsuario
+  const deslogaUsuario = props.deslogaUsuario
 
-function deslogaUsuario() {
-  localStorage.removeItem('usuario')
-  usuario = null
-}
-
-function App() {
   return (
     <div className="app">
-      <NavBar usuario={usuario} deslogaUsuario = {deslogaUsuario} />
+      <NavBar usuario={usuario} deslogaUsuario={deslogaUsuario} />
 
       <Switch>
         <Route path="/" exact render={() => {
@@ -35,10 +29,10 @@ function App() {
         }} />
 
         <Route path="/login" render={(props) => {
-          return <Login historico={props.history} logaUsuario={logaUsuario} />
-        }}/>
-        
-        <Route path="/conta" component={Conta}/>
+          return <Login historico={props.history} onEnviar={logaUsuario} />
+        }} />
+
+        <Route path="/conta" component={Conta} />
         <Route path="/quem-somos" component={QuemSomos} />
         <Route path="/contato" component={Contato} />
         <Route path="/home" component={Home} />
@@ -48,9 +42,45 @@ function App() {
   )
 }
 
+
+function passaDadosDoEstadoParaMeuComponente(state) {
+  const props = {
+    usuario: state.usuario
+  }
+  return props
+}
+
+
+function passaFuncoesQueDisparamAcoesViaProps(dispatch) {
+  const props = {
+    logaUsuario: (dados) => {
+      const acao = {
+        type: 'LOGA_USUARIO',
+        dados: dados
+      }
+      dispatch(acao)
+    },
+    deslogaUsuario: () => {
+      const acao = {
+        type: 'DESLOGA_USUARIO'
+      }
+      dispatch(acao)
+    },
+    
+  }
+  return props
+}
+
+const conectaNaStore = connect(passaDadosDoEstadoParaMeuComponente,
+  passaFuncoesQueDisparamAcoesViaProps)
+
+const AppConectada = withRouter(conectaNaStore(App))
+
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>, 
+  <Provider store={store}>
+    <BrowserRouter>
+      <AppConectada />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('projeto')
 )

@@ -27,7 +27,7 @@ class Login extends Component {
           senha: campoSenha.getValor()
         }
     
-        this.props.logaUsuario(dados)
+        this.props.onEnviar(dados)
     
         this.props.historico.push('/')
       }
