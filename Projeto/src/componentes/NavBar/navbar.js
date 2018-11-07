@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link , withRouter } from 'react-router-dom'
 import logo from './logo.png'
 import Menu from '../Menu/menu'
 import { connect } from 'react-redux'
@@ -39,4 +39,4 @@ const conectaNaStore = connect(passaNoPropsDadosDoEstado, passaNoPropsDisparador
   
   const NavBarConectado = conectaNaStore(NavBar)
 
-export default NavBarConectado
+export default withRouter(NavBarConectado)
