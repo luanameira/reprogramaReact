@@ -21,15 +21,14 @@ function App(props) {
 
   return (
     <div className="app">
-      <NavBar usuario={usuario} deslogaUsuario={deslogaUsuario} />
+      <NavBar />
 
       <Switch>
         <Route path="/" exact render={() => {
           return usuario ? <Home /> : <Redirect to="/login" />
         }} />
 
-        <Route path="/login" render={(props) => {
-          return <Login historico={props.history} onEnviar={logaUsuario} />
+        <Route path="/login" component ={Login}/>
         }} />
 
         <Route path="/conta" component={Conta} />
