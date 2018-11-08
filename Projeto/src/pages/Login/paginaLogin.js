@@ -4,6 +4,7 @@ import Botao from "../../componentes/Botao/Botao";
 import Legenda from "../../componentes/Legenda/legenda"
 import Campo from "../../componentes/Campo/campo"
 import { connect } from 'react-redux'
+import {logaUsuario} from '../../redux/actions'
 import "./paginaLogin.css"
 
 
@@ -65,19 +66,4 @@ class Login extends Component {
 }
 
 
-function passaAcaoNoProps(dispatch) {
-    return {
-        logaUsuario: (dados) => {
-            const acao = {
-                type: 'LOGA_USUARIO', dados: dados
-            }
-            dispatch(acao)
-        }
-    }
-}
-
-const conectaNaStore = connect(null, passaAcaoNoProps)
-
-const LoginConectado = conectaNaStore(Login)
-
-export default LoginConectado
+export default connect (null, {logaUsuario}) (Login)
