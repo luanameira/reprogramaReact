@@ -8,7 +8,7 @@ import carregando from "./loading.svg"
 class Home extends Component {
   constructor(props){
     super(props)
-    this.state = {carregando: true}
+    this.state = {carregando: false}
   }
 
   render() {
@@ -25,6 +25,11 @@ class Home extends Component {
       ) : (
         <div>
           <Postit />
+          <div>
+            {this.props.postit.map(postit =>(
+              <Postit  key={postit.id} id={postit.id} titulo={postit.titulo} texto={postit.texto} />
+            ))}
+          </div>
         </div>
       )}
       </main>
@@ -34,4 +39,4 @@ class Home extends Component {
 
 
 
-export default connect((state) => ({ usuario: state.usuario }))(Home)
+export default connect((state) => ({ usuario: state.usuario, postit: state.postits }))(Home)
