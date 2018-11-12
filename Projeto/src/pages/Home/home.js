@@ -26,7 +26,7 @@ class Home extends Component {
         <div>
           <Postit />
           <div>
-            {this.props.postit.map(postit =>(
+            {this.props.postits.map(postit =>(
               <Postit  key={postit.id} id={postit.id} titulo={postit.titulo} texto={postit.texto} />
             ))}
           </div>
@@ -39,4 +39,4 @@ class Home extends Component {
 
 
 
-export default connect((state) => ({ usuario: state.usuario, postit: state.postits }))(Home)
+export default connect((state) => ({ usuario: state.usuario, postits: state.postits }))(Home)

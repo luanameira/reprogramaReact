@@ -5,6 +5,7 @@ import Legenda from "../../componentes/Legenda/legenda"
 import Campo from "../../componentes/Campo/campo"
 import { connect } from 'react-redux'
 import {logaUsuario} from '../../redux/actions'
+import {Redirect} from 'react-router-dom'
 import "./paginaLogin.css"
 
 
@@ -48,6 +49,10 @@ class Login extends Component {
 
 
     render() {
+
+        if (this.props.usuario) {
+            return <Redirect to="/" />
+        }
         return (
             <main className="login">
                 <h1>Login</h1>
